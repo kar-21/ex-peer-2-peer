@@ -15,8 +15,8 @@ require("dotenv").config({
   path: path.resolve(__dirname, "./.env"),
 });
 
-http.listen(process.env.URL || port, () => {
-  console.log(`listening on *:${process.env.URL || port}`);
+http.listen(process.env.PORT || port, () => {
+  console.log(`listening on *:${process.env.PORT || port}`);
 });
 
 connectedUsers = [];
