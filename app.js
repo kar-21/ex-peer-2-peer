@@ -3,7 +3,12 @@ const path = require("path");
 const app = require("express")();
 app.use(cors());
 const http = require("http").createServer(app);
-const io = require("socket.io")(http, { cors: { origin: "*" } });
+const io = require("socket.io")(http, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
+});
 const port = 8080;
 
 require("dotenv").config({
