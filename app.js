@@ -1,6 +1,7 @@
 const cors = require("cors");
 const path = require("path");
 const app = require("express")();
+app.use(cors());
 const http = require("http").createServer(app);
 const io = require("socket.io")(http, { cors: { origin: "*" } });
 const port = 8080;
@@ -45,6 +46,12 @@ io.on("connection", (socket) => {
   socket.on("iceCandidate", (data) => {
     socket.to(data.to).emit("remotePeerIceCandidate", {
       candidate: data.candidate,
+    });
+  });
+
+  socket.on("sendPosition", (data) => {
+    socket.to(data.to).emit("remotePosition", {
+      position: data.position,
     });
   });
 
