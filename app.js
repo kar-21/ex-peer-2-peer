@@ -9,14 +9,14 @@ const io = require("socket.io")(http, {
     methods: ["GET", "POST"],
   },
 });
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 require("dotenv").config({
   path: path.resolve(__dirname, "./.env"),
 });
 
-http.listen(process.env.PORT || port, () => {
-  console.log(`listening on *:${process.env.PORT || port}`);
+http.listen(port, () => {
+  console.log(`listening on *:${port}`);
 });
 
 connectedUsers = [];
